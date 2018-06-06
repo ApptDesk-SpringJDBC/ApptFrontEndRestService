@@ -1,0 +1,152 @@
+package com.telappoint.apptdesk.common.components;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.ConnectionFactory;
+import org.apache.commons.dbcp.DriverManagerConnectionFactory;
+import org.apache.commons.dbcp.PoolableConnectionFactory;
+import org.apache.commons.dbcp.PoolingDataSource;
+import org.apache.commons.pool.impl.GenericObjectPool;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.support.TransactionTemplate;
+
+import com.telappoint.apptdesk.common.constants.ErrorConstants;
+import com.telappoint.apptdesk.common.constants.PropertiesConstants;
+import com.telappoint.apptdesk.common.model.Client;
+import com.telappoint.apptdesk.common.model.JdbcCustomTemplate;
+import com.telappoint.apptdesk.common.utils.PropertyUtils;
+import com.telappoint.apptdesk.handlers.exception.TelAppointException;
+
+/**
+ * 
+ * @author Balaji Nandarapu
+ *
+ */
+
+@Component
+public class ConnectionPoolUtil {
+
+	private static final String DRIVER = "org.mariadb.jdbc.Driver";
+	private static final Map<String, JdbcCustomTemplate> datatSourceMap = new HashMap<String, JdbcCustomTemplate>();
+	private static final Object lock = new Object();
+
+	@Autowired
+	private PropertySource propertySource;
+
+	private GenericObjectPool connectionPool = null;
+
+	/**
+	 * 1) Creates an instance of GenericObjectPool that holds our pool of
+	 * connections object. 2) Creates a connection factory object which will be
+	 * use by the pool to create the connection object. We passes the JDBC url
+	 * info, username and password. 3) Creates a PoolableConnectionFactory that
+	 * will wraps the connection object created by the ConnectionFactory to add
+	 * object pooling functionality.
+	 * 
+	 * 
+	 * @param client
+	 * @return
+	 * @throws Exception
+	 */
+	public JdbcCustomTemplate getJdbcCustomTemplate(Logger logger, Client client) throws TelAppointException, Exception {
+		String clientCode = client.getClientCode();
+		JdbcCustomTemplate jdbcCustomTemplate = datatSourceMap.get(clientCode);
+		if (jdbcCustomTemplate != null) {
+			// Not good practice. we will enable later.
+			/*try {
+				jdbcCustomTemplate.getJdbcTemplate().queryForInt("select 1 from dual");
+			} catch(DataAccessException sqlce) {
+				return getNewJdbcCustomTemplate(logger, client);
+			}*/
+			printStatus();
+			return jdbcCustomTemplate;
+		} else {
+			return getNewJdbcCustomTemplate(logger, client);
+		}
+	}
+	
+	public JdbcCustomTemplate getNewJdbcCustomTemplate(Logger logger, Client client) throws TelAppointException, Exception {
+		String clientCode = client.getClientCode();
+		JdbcCustomTemplate jdbcCustomTemplate = null;
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+		try {
+			Class.forName(ConnectionPoolUtil.DRIVER).newInstance();
+			connectionPool = new GenericObjectPool();
+			connectionPool
+					.setMaxActive(Integer.valueOf(PropertyUtils.getValueFromProperties("MAX_ACTIVE", PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName())));
+			connectionPool.setMaxIdle(Integer.valueOf(PropertyUtils.getValueFromProperties("MIN_IDLE", PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName())));
+
+			String testOnBorrow = PropertyUtils.getValueFromProperties("testOnBorrow", PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName());
+			String validationQuery = PropertyUtils.getValueFromProperties("validationQuery", PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName());
+			String validationInterval = PropertyUtils.getValueFromProperties("validationInterval", PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName());
+			String removeAbandoned = PropertyUtils.getValueFromProperties("removeAbandoned", PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName());
+			String removeAbandonedTimeout = PropertyUtils.getValueFromProperties("removeAbandonedTimeout", PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName());
+			String timeBetweenEvictionRunsMillis = PropertyUtils.getValueFromProperties("timeBetweenEvictionRunsMillis",
+					PropertiesConstants.APPT_SERVICE_REST_WS_PROP.getPropertyFileName());
+
+			if (testOnBorrow == null)
+				testOnBorrow = "true";
+			if (validationQuery == null)
+				validationQuery = "select 1 from dual";
+			if (validationInterval == null)
+				validationInterval = "34000";
+			if (removeAbandoned == null)
+				removeAbandoned = "true";
+			if (removeAbandonedTimeout == null)
+				removeAbandonedTimeout = "54";
+			if (timeBetweenEvictionRunsMillis == null)
+				timeBetweenEvictionRunsMillis = "34000";
+
+			connectionPool.setTestOnBorrow(Boolean.valueOf(testOnBorrow));
+			Properties props = new Properties();
+			props.put("user", propertySource.getClientUserName());
+			props.put("password", propertySource.getClientPassword());
+			props.put("autoReconnect", true);
+			props.put("validationQuery", validationQuery);
+			props.put("validationInterval", Long.valueOf(validationInterval));
+			props.put("removeAbandoned", Boolean.valueOf(removeAbandoned));
+			props.put("removeAbandonedTimeout", Long.valueOf(removeAbandonedTimeout));
+			props.put("timeBetweenEvictionRunsMillis", Long.valueOf(timeBetweenEvictionRunsMillis));
+			ConnectionFactory cf = new DriverManagerConnectionFactory("jdbc:mysql://" + client.getDbServer() + "/" + client.getDbName(), props);
+			new PoolableConnectionFactory(cf, connectionPool, null, null, true, true);
+			DataSource dataSource = new PoolingDataSource(connectionPool);
+			jdbcTemplate.setDataSource(dataSource);
+			NamedParameterJdbcTemplate nameParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+			DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager(dataSource);
+			TransactionTemplate transactionTemplate = new TransactionTemplate(dataSourceTransactionManager);
+			jdbcCustomTemplate = new JdbcCustomTemplate(jdbcTemplate, nameParameterJdbcTemplate, dataSourceTransactionManager, transactionTemplate);
+			jdbcCustomTemplate.setClientCode(clientCode);
+			synchronized (lock) {
+				datatSourceMap.put(clientCode, jdbcCustomTemplate);
+			}
+			printStatus();
+		} catch (IOException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+			logger.error("Error while prepare the connection pool :", e);
+			throw new TelAppointException(ErrorConstants.ERROR_2001.getCode(), ErrorConstants.ERROR_2001.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), null);
+		}
+		return jdbcCustomTemplate;
+	}
+
+	public GenericObjectPool getConnectionPool() {
+		return connectionPool;
+	}
+
+	/**
+	 * Prints connection pool status.
+	 */
+	private void printStatus() {
+		System.out.println("Max   : " + getConnectionPool().getMaxActive() + "; " + "Active: " + getConnectionPool().getNumActive() + "; " + "Idle  : "
+				+ getConnectionPool().getNumIdle());
+	}
+}

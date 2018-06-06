@@ -1,0 +1,1168 @@
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMobileHomePage?langCode=us-en&uuid=
+Formatted JSON Data
+{
+    "data": {
+        "status": true,
+        "pageData": {
+            "language": "Language",
+            "clientCodeLabel": "Enter Client Code",
+            "goLabel": "Go",
+            "homePageInfo": "Please enter the <b>Client Code</b> of your provider and click \"Go\" button. You may contact your provider, if you do not have the code.",
+            "emptyErrorMessage": "Please enter the client code",
+            "invalidErrorMessage": "Please enter a valid client code",
+            "serviceProviderLabel": "My Service Provider",
+            "poweredByLabel": "Powered by IT FrontDesk"
+        },
+        "clientList": []
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMobileMenuItems?langCode=us-en&uuid=anusha1
+
+{
+   "data":{
+      "status":true,
+      "pageData":{
+         "home":"Home",
+         "myAccount":"My Account",
+         "existAppointments":"Existing Appointments",
+         "notificationPref":"My Notification Preference",
+         "serviceProviders":"My Service Providers",
+         "close":"Exit/Close"
+      },
+      "displayFlags":{
+         "displayExistingAppointments":"N",
+         "displayMyAccount":"Y",
+         "displayNotificationPreference":"N",
+         "displayMyProviders":"Y"
+      },
+      "firstName":"",
+      "lastName":""
+   }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getClientListByClientCode?uuid=&clientCode=DEMOCALL
+{
+    "data": {
+        "status": true,
+        "iphoneClientInfo": [
+            {
+                "clientCode": "DEMOCALL",
+                "clientType": "mobile",
+                "name": "Demo Callcenter",
+                "city": "Nashville",
+                "state": "TN",
+                "zip": "37203",
+                "address": "123 Main St",
+                "phoneNumber": "",
+                "clientLocationGoogleMap": "",
+                "logoFileName": "https://apps.itfrontdesk.com/client/demo_ca.png"
+            }
+        ],
+        "pageData": {
+            "searchResultLabel": "Search Result",
+            "notFoundMessage": "We are sorry that we are unable to match the client code you have entered. Please try with correct client code or contact your provider."
+        }
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getClientInfo?clientCode=DEMOCALL&device=mobile&langCode=en-us&transId=1
+
+{
+    "data": {
+        "status": true,
+        "clientInfo": {
+            "loginFirst": "N",
+            "token": "51f3d419-2c46-3221-9348-85eb314ed84b"
+        }
+    }
+}
+
+
+http://development.itfrontdesk.com:8080/apptFrontEndRestService/service/getTransId?clientCode=DEMOCALL&device=mobile&uuid=xyz&ipAddress=&callerId=mmm&userName=
+
+{
+    "data": {
+        "status": true,
+        "transId": 2437
+    }
+}
+
+
+-- This API should be called after each page move.
+http://development.itfrontdesk.com:8080/apptFrontEndRestService/service/updateTransaction?clientCode=DEMOCALL&device=mobile&transId=5&pageId=1
+{"data":{"status":true}}
+===============================================================
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMobileApptsFeaturesHomePage?clientCode=DEMOCALL&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "pageData": {
+            "book": "Book a New Appointment",
+            "viewOrCancel": "View or Cancel existing Appointment",
+            "viewGrant": "View Grant Info",
+            "viewDocsToBring": "View List of Documents to Bring"
+        }
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getIconAndButtonLabels?clientCode=DEMOCALL&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "pageData": {
+            "home": "Home",
+            "locations": "Locations",
+            "messages": "Messages",
+            "docsToBring": "Docs to bring",
+            "logout": "Logout",
+            "back": "Back",
+            "next": "Next",
+            "bookit": "Book It",
+            "cancel": "Cancel"
+        }
+    }
+}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getBasicLocations?clientCode=DEMOCALL&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "locations": [
+            {
+                "locationId": 1,
+                "locationName": "Main Office",
+                "address": "111 Main Street",
+                "city": "",
+                "state": "AL",
+                "zip": "",
+                "locationGoogleMap": ""
+            }
+        ]
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMessages?clientCode=DEMOCALL&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+  "data": {
+    "status": true,
+    "messages": []
+  }
+}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getListOfDocsTOBring?clientCode=DEMOCALL&langCode=us-en&serviceId=2&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+
+{
+    "data": {
+        "status": true,
+        "listOfDocs": {
+            "serviceName": "Head Start Application",
+            "displayText": "List of documents to bring here"
+        }
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getLocResSerInfo?clientCode=DEMOCALL&device=mobile&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "locResSerInfo": {
+            "displayCompany": "N",
+            "displayProcedure": "N",
+            "displayLocation": "Y",
+            "displayDepartment": "N",
+            "displayResource": "N",
+            "displayService": "Y",
+            "displayDateTime": null,
+            "displayComments": null,
+            "callCenterLogic": "Y"
+        },
+        "pageData": {
+            "titleLabel": "Select Service",
+            "titleDesc": "Please select the Location, Doctor and Service and then click Next on the right corner.",
+            "companyLabel": "Company",
+            "companyLabelDropDownInit": "Select",
+            "procedureLabel": "Procedure",
+            "procedureLabelDropDownInit": "Select",
+            "locationLabel": "Location",
+            "locationDropDownInit": "Select",
+            "departmentLabel": "Deparment",
+            "departmentDropDownInit": "Select",
+            "resourceLabel": "Doctor",
+            "resourceDropDownInit": "Select",
+            "serviceLabel": "Service",
+            "serviceDropInit": "Select",
+            "pageValidationErrorMessage": "Please select all the below select dropdowns before clicking \"Next\" button."
+        }
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getCompanyList?clientCode=DEMOCALL&device=mobile&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{"data":{"status":true,"companyList":[{"companyId":1,"companyNameOnline":"dummy"}]}}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getProcedureList?clientCode=DEMOCALL&device=mobile&langCode=us-en&companyId=1&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{"data":{"status":true,"procedureList":[{"procedureId":1,"procedureNameOnline":"dummy"}]}}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getLocationList?clientCode=DEMOCALL&device=mobile&langCode=us-en&procedureId=1&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "locations": [
+            {
+                "locationId": 1,
+                "locationName": "Main Office",
+                "workPhone": "--",
+                "address": "111 Main Street",
+                "city": "",
+                "state": "AL",
+                "zip": ""
+            }
+        ]
+    }
+}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getDepartmentList?clientCode=DEMOCALL&device=mobile&langCode=us-en&locationId=1&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{"data":{"status":true,"departmentList":[{"departmentId":1,"departmentName":"dummy"}]}}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getResourceList?clientCode=DEMOCALL&device=mobile&langCode=us-en&locationId=1&departmentId=1&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getServiceList?clientCode=DEMOCALL&device=mobile&langCode=us-en&locationId=1&departmentId=1&resourceId=1&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "services": [
+            {
+                "serviceId": 1,
+                "serviceNameOnline": "Utility Bill"
+            },
+            {
+                "serviceId": 2,
+                "serviceNameOnline": "Head Start Application"
+            }
+        ]
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getAvailableDates?clientCode=DEMOCALL&device=mobile&locationId=1&departmentId=1&resourceId=1&serviceId=2&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "availableDatesArray": [
+            "2017-07-03",
+            "2017-07-05",
+            "2017-07-07",
+            "2017-07-10",
+            "2017-07-12",
+            "2017-07-14",
+            "2017-07-17",
+            "2017-07-19",
+            "2017-07-21",
+            "2017-07-24",
+            "2017-07-26",
+            "2017-07-28",
+            "2017-07-31",
+            "2017-08-02",
+            "2017-08-04",
+            "2017-08-07",
+            "2017-08-09",
+            "2017-08-11",
+            "2017-08-14",
+            "2017-08-16",
+            "2017-08-18",
+            "2017-08-21",
+            "2017-08-23",
+            "2017-08-25",
+            "2017-08-28",
+            "2017-08-30",
+            "2017-09-01",
+            "2017-09-04",
+            "2017-09-06",
+            "2017-09-08",
+            "2017-09-11",
+            "2017-09-13",
+            "2017-09-15",
+            "2017-09-18",
+            "2017-09-20",
+            "2017-09-22",
+            "2017-09-25",
+            "2017-09-27",
+            "2017-09-29",
+            "2017-10-02",
+            "2017-10-04",
+            "2017-10-06",
+            "2017-10-09",
+            "2017-10-11",
+            "2017-10-13",
+            "2017-10-16",
+            "2017-10-18",
+            "2017-10-20",
+            "2017-10-23",
+            "2017-10-25",
+            "2017-10-27",
+            "2017-10-30"
+        ],
+        "holidayListArray": [],
+        "closedDayList": [],
+        "isSlotAvailableMessage": "Available",
+        "isNotAvailableMessage": "Not Available",
+        "isHolidayMessage": "Holiday",
+        "isClosedMessage": "Closed",
+        "timeZone": "US/Central",
+        "pageData": {
+            "dateTimeTitle": "Select Date & Time",
+            "available": "Available",
+            "notAvailable": "Not Available",
+            "noAvailableDateMessage": "The date you have selected is not available. Please try another date.",
+            "noDatesAvailable": "There are no timeslots available for the location/service you have chosen. New appointments are added every Monday. Please check back later. Thank you."
+        }
+    }
+}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getAvailableTimes?clientCode=DEMOCALL&device=mobile&locationId=1&departmentId=1&resourceId=1&serviceId=2&transId=1&availDate=2017-07-03&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+    "data": {
+        "status": true,
+        "availableTimesArray": [
+            "09:00:00",
+            "09:30:00",
+            "10:00:00",
+            "10:30:00",
+            "11:00:00",
+            "11:30:00",
+            "13:00:00",
+            "13:30:00",
+            "14:00:00",
+            "14:30:00",
+            "15:00:00",
+            "15:30:00"
+        ],
+        "displayTimeList": "9:00 AM,9:30 AM,10:00 AM,10:30 AM,11:00 AM,11:30 AM,1:00 PM,1:30 PM,2:00 PM,2:30 PM,3:00 PM,3:30 PM",
+        "timeZone": "US/Central",
+        "pageData": {
+            "noTimesAvailableMessage": "We are sorry that there are no available times for the date you have chosen. We open new timeslots every Monday morning and there could be some cancellations. Please check periodically for any new appointments availability."
+        }
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/holdAppointment?clientCode=DEMOCALL&device=mobile&companyId=1&procedureId=1&locationId=1&departmentId=1&resourceId=1&serviceId=2&customerId=0&transId=1&apptDateTime=2017-07-03 09:00:00&token=51f3d419-2c46-3221-9348-85eb314ed84b
+
+{
+    "data": {
+        "status": true,
+        "scheduleId": 404,
+        "displayDateTime": "N"
+    }
+}
+
+
+====================================================================================
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMobilePageFields?clientCode=DEMOCALL&device=mobile&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+
+Response:
+{
+    "data": {
+        "status": true,
+        "mobilePageFields": [
+            {
+                "fieldId": 9,
+                "fieldName": "SSN",
+                "loginType": "authenticate",
+                "paramType": "string",
+                "paramTable": "customer",
+                "paramColumn": "account_number",
+                "displayType": "textbox",
+                "display": "last7",
+                "emptyErrorMsg": "Please enter your SSN",
+                "invalidErrorMsg": "Please enter a valid SSN",
+                "required": "Y",
+                "validateRequired": "Y",
+                "validationRules": "numeric",
+                "validateMaxChars": "9",
+                "initialValues": " ",
+                "javaRef": "accountNumber",
+                "storageSize": 0,
+                "listLabels": " ",
+                "listValues": " "
+            },
+            {
+                "fieldId": 10,
+                "fieldName": "First Name",
+                "loginType": "update",
+                "paramType": "string",
+                "paramTable": "customer",
+                "paramColumn": "first_name",
+                "displayType": "textbox",
+                "display": "",
+                "emptyErrorMsg": "Please enter your First Name",
+                "invalidErrorMsg": "Please enter a valid First Name",
+                "required": "Y",
+                "validateRequired": "Y",
+                "validationRules": "alpha, space, hypen, single-quote",
+                "validateMaxChars": "50",
+                "initialValues": "",
+                "javaRef": "firstName",
+                "storageSize": 0,
+                "listLabels": "",
+                "listValues": ""
+            },
+            {
+                "fieldId": 11,
+                "fieldName": "Last Name",
+                "loginType": "update",
+                "paramType": "string",
+                "paramTable": "customer",
+                "paramColumn": "last_name",
+                "displayType": "textbox",
+                "display": "",
+                "emptyErrorMsg": "Please enter your Last Name",
+                "invalidErrorMsg": "Please enter a valid Last Name",
+                "required": "Y",
+                "validateRequired": "Y",
+                "validationRules": "alpha, space, hypen, single-quote",
+                "validateMaxChars": "50",
+                "initialValues": "",
+                "javaRef": "lastName",
+                "storageSize": 0,
+                "listLabels": "",
+                "listValues": ""
+            },
+            {
+                "fieldId": 12,
+                "fieldName": "Home Phone",
+                "loginType": "update",
+                "paramType": "string",
+                "paramTable": "customer",
+                "paramColumn": "home_phone",
+                "displayType": "textbox-3-3-4",
+                "display": "",
+                "emptyErrorMsg": "Empty error message not configured for the key: LOGIN_CONTACT_PHONE_EMPTY_ERROR",
+                "invalidErrorMsg": "Invalid Error message not configured for the key:LOGIN_CONTACT_PHONE_INVALID_ERROR",
+                "required": "Y",
+                "validateRequired": "Y",
+                "validationRules": "numeric",
+                "validateMaxChars": "10",
+                "initialValues": "",
+                "javaRef": "homePhone",
+                "storageSize": 0,
+                "listLabels": "",
+                "listValues": ""
+            },
+            {
+                "fieldId": 13,
+                "fieldName": "Email",
+                "loginType": "update",
+                "paramType": "string",
+                "paramTable": "customer",
+                "paramColumn": "email",
+                "displayType": "textbox",
+                "display": "",
+                "emptyErrorMsg": "Please enter your Email",
+                "invalidErrorMsg": "Please enter a valid Email",
+                "required": "N",
+                "validateRequired": "Y",
+                "validationRules": "email",
+                "validateMaxChars": "50",
+                "initialValues": "",
+                "javaRef": "email",
+                "storageSize": 0,
+                "listLabels": "",
+                "listValues": ""
+            }
+        ],
+        "pageData": {
+            "titleLabel": "Your Info",
+            "titleDesc": "To make an appointment, please enter the requested information below  and client \"Next\" button at top right corner above.",
+            "firstNameLabel": "FirstName",
+            "lastNameLabel": "LastName",
+            "homePhoneLabel": "Home Phone",
+            "emailLabel": "Email"
+        }
+    }
+}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/loginMobileAuthenticate
+{"clientCode":"DEMOCALL",
+  "langCode":"us-en",
+  "device":"mobile",
+  "transId":1,
+  "token":"ed84ff54-6640-36cb-9336-31c1f333d887",
+  "inputParamValues":"9~100000205|10~Anusha|11~K|12~0001231234|13~kannuria@gmail.com"
+}
+
+Response:
+{"data": {
+   "status": true,
+   "authMessage": "",
+   "customerId": 181,
+   "blocked": "N",
+   "authSuccess": true
+}}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/loginAuthenticateAndUpdate
+{"clientCode":"DEMOCALL",
+  "langCode":"us-en",
+  "device":"mobile",
+  "uuid":"anusha1",
+  "transId":1,
+  "token":"ed84ff54-6640-36cb-9336-31c1f333d887",
+  "inputParamValues":"9~100000205|10~Anusha|11~K|12~7702520072|13~kannuria@gmail.com"
+}
+
+{"data": {
+   "status": true,
+   "authMessage": "",
+   "customerId": 181,
+   "blocked": "N",
+   "authSuccess": true
+}}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getVerifyPageData?clientCode=DEMOCALL&device=mobile&langCode=us-en&customerId=181&scheduleId=404&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+
+{
+    "data": {
+        "status": true,
+        "verifyPageData": {
+            "accountNumber": "100000205",
+            "firstName": "Anusha",
+            "lastName": "K",
+            "homePhone": "770-252-0072",
+            "email": "kannuria@gmail.com",
+            "apptDateTime": "07/03/2017 09:00 AM",
+            "procedureName": "dummy",
+            "locationName": "Main Office",
+            "departmentName": "dummy",
+            "resourceName": " Intake Worker#2",
+            "serviceName": "Head Start Application",
+            "listOfDocsToBring": "List of documents to bring here",
+            "timeZone": ""
+        },
+        "pageData": {
+            "titleLabel": "Verify",
+            "titleDesc": "Please verify the below information and click on the \"Book It\" button.",
+            "firstNameLabel": "FirstName",
+            "lastNameLabel": "LastName",
+            "apptDateTimeLabel": "AppointmentDateTime",
+            "locationLabel": "Location",
+            "resourceLabel": "Doctor",
+            "serviceLabel": "Service",
+            "listOfDocsToBringLabel": "List of Documents to Bring",
+            "addCommentLabel": "Add Comments"
+        }
+    }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/bookAppointment
+{
+  "clientCode":"DEMOCALL",
+  "langCode":"us-en",
+  "device":"mobile",
+  "transId":1,
+  "scheduleId":405,
+  "token":"51f3d419-2c46-3221-9348-85eb314ed84b",
+  "customerId":1
+}
+
+
+{"data": {
+   "status": true,
+   "confirmApptData":    {
+      "accountNumber": "0444555",
+      "firstName": "John",
+      "lastName": "Smith",
+      "homePhone": "000-123-1234",
+      "email": "",
+      "confNumber": "322",
+      "apptDateTime": "07/03/2017 09:00 AM",
+      "procedureName": "dummy",
+      "locationName": "Main Office",
+      "departmentName": "dummy",
+      "resourceName": " Intake Worker#2",
+      "serviceName": "Head Start Application",
+      "listOfDocsToBring": "List of documents to bring here",
+      "timeZone": ""
+   },
+   "pageData":    {
+      "titleLabel": "Confirmation",
+      "titleDesc": "Thank you for scheduling with us! Our Physician at Demo Medical Group look forward to working with you during your scheduled time below.",
+      "confirmNumberLabel": "Confirmation#",
+      "firstNameLabel": "FirstName",
+      "lastNameLabel": "LastName",
+      "apptDateTimeLabel": "AppointmentDateTime",
+      "locationLabel": "Location",
+      "resourceLabel": "Doctor",
+      "serviceLabel": "Service",
+      "listOfDocsToBringLabel": "List of Documents to Bring"
+   }
+}}
+============================================================
+
+
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/	getMobilePageFieldsForCancelAppts?clientCode=DEMOCALL&device=mobile&langCode=us-en&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{  
+   "data":{  
+      "mobilePageFields":[  
+         {  
+            "fieldId":9,
+            "fieldName":"SSN",
+            "loginType":"authenticate",
+            "paramType":"string",
+            "paramTable":"customer",
+            "paramColumn":"account_number",
+            "displayType":"textbox",
+            "display":"last7",
+            "emptyErrorMsg":"Please enter your SSN",
+            "invalidErrorMsg":"Please enter a valid SSN",
+            "required":"Y",
+            "validateRequired":"Y",
+            "validationRules":"numeric",
+            "validateMaxChars":"9",
+            "javaRef":"accountNumber",
+            "storageSize":0
+         },
+         {  
+            "fieldId":14,
+            "fieldName":"Contact Phone",
+            "loginType":"authenticate",
+            "paramType":"string",
+            "paramTable":"customer",
+            "paramColumn":"contact_phone",
+            "displayType":"textbox-3-3-4",
+            "display":"",
+            "emptyErrorMsg":"Please enter your Home Phone",
+            "invalidErrorMsg":"Please enter a valid 10-digit Home Phone",
+            "required":"Y",
+            "validateRequired":"Y",
+            "validationRules":"us-phone",
+            "validateMaxChars":"10",
+            "javaRef":"contactPhone",
+            "storageSize":0
+         }
+      ],
+      "pageData":null
+   }
+}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/authenticateForCancel?clientCode=DEMOCALL&langCode=us-en&device=mobile&inputParamValues=9~000145645&13|14~0001231237
+{"data":{"status":true,"authMessage":"","customerId":180,"blocked":"N","authSuccess":true}}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getBookedAppointments?clientCode=DEMOCALL&device=mobile&langCode=us-en&customerId=1&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{
+   "data":{
+      "status":true,
+      "pageData":{
+         "apptHistoryLabel":"Existing Appointments",
+         "confirmNumberLabel":"Confirmation#",
+         "ssnLabel":"SSN",
+         "firstNameLabel":"FirstName",
+         "lastNameLabel":"LastName",
+         "emailLabel":"Email",
+         "contactPhoneLabel":"ContactPhone",
+         "apptDateTimeLabel":"AppointmentDateTime",
+         "locationLabel":"Location",
+         "departmentLabel":"Doctor",
+         "serviceLabel":"ServiceConfirmNumber",
+         "noApptsLabel":"There no existing appointments for the SSN and Contact Phone you have entered."
+      },
+      "bookedAppts":[
+         {
+            "accountNumber":"0444555",
+            "firstName":"John",
+            "lastName":"Smith",
+            "homePhone":"0001231234",
+            "cellPhone":"",
+            "workPhone":"",
+            "contactPhone":"nullnullnull",
+            "email":"",
+            "locationName":"Main Office",
+            "locationAddress":"111 Main Street",
+            "city":"",
+            "state":"AL",
+            "zip":"",
+            "resourceName":"IntakeWorker#2",
+            "serviceName":"Head Start Application",
+            "apptDateTime":"07/05/2017 09:00 AM",
+            "scheduleId":403,
+            "confirmationNumber":321,
+            "listDocsScript":[
+
+            ]
+         },
+         {
+            "accountNumber":"0444555",
+            "firstName":"John",
+            "lastName":"Smith",
+            "homePhone":"0001231234",
+            "cellPhone":"",
+            "workPhone":"",
+            "contactPhone":"nullnullnull",
+            "email":"",
+            "locationName":"Main Office",
+            "locationAddress":"111 Main Street",
+            "city":"",
+            "state":"AL",
+            "zip":"",
+            "resourceName":"IntakeWorker#2",
+            "serviceName":"Head Start Application",
+            "apptDateTime":"07/05/2017 02:00 PM",
+            "scheduleId":402,
+            "confirmationNumber":320,
+            "listDocsScript":[
+
+            ]
+         }
+      ]
+   }
+}
+
+
+
+
+http://development.itfrontdesk.com//apptFrontEndRestService/service/cancelAppointment?clientCode=DEMOCALL&device=mobile&langCode=us-en&customerId=1&scheduleId=6&transId=1&token=51f3d419-2c46-3221-9348-85eb314ed84b
+{  
+   "data":{  
+      "status":true,
+      "cancelApptDetails":{  
+         "accountNumber":"000145645",
+         "firstName":"Johnn",
+         "lastName":"Smithmm",
+         "contactPhone":"000-123-1237",
+         "email":"",
+         "confNumber":"13",
+         "apptDateTime":"04/19/2017 10:45 AM",
+         "procedureName":"dummy",
+         "locationName":"Charleston County",
+         "departmentName":"Outreach",
+         "resourceName":" CHS Intake Outr #2",
+         "serviceName":"Utility Bill Payment",
+         "listOfDocsToBring":"Test"
+      },
+      "pageData":{  
+         "titleLabel":"Confirmation",
+         "titleDesc":"Your appointment has been cancelled.",
+         "confirmNumberLabel":"Confirmation#",
+         "ssnLabel":"SSN",
+         "firstNameLabel":"First Name",
+         "lastNameLabel":"Last Name",
+         "emailLabel":"Email",
+         "contactPhoneLabel":"Contact Phone",
+         "apptDateTimeLabel":"Appointment Date & Time",
+         "procedureLabel":"Procedure",
+         "locationLabel":"Location",
+         "departmentLabel":"Department",
+         "resourceLabel":"Doctor",
+         "serviceLabel":"Service",
+         "listOfThingsTOBringLabel":"List of Thing to Bring"
+      },
+      "cancelled":true
+   }
+}
+
+==============================================================
+
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/addMyProvidersList?clientCode=DEMOCALL&device=mobile&uuid=balaji
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/deleteProvidersList?clientCode=DEMOCALL&device=mobile&uuid=balaji
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMyProvidersList?clientCode=DEMOCALL&device=mobile&uuid=balaji
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMyProvidesLocResSerList?clientCode=DEMOCALL&device=mobile&uuid=balaji
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getClientListByMobileCode?uuid=&mobileCode=PALMETTOCAP
+{
+   "data":{
+      "status":true,
+      "iphoneClientInfo":[
+         {
+            "clientCode":"DEMOCALL",
+            "clientType":"mobile",
+            "name":"Palmetto CAP",
+            "city":"Nashville",
+            "state":"TN",
+            "zip":"37203",
+            "address":"123 Main St",
+            "phoneNumber":"615-123-1234",
+            "clientLocationGoogleMap":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.8923323436147!2d-122.31074224845679!3d47.6087831957176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54906ac50ff083ab%3A0x3aedb2d7eeb83cb8!2sCenterstone!5e0!3m2!1sen!2sus!4v1466874041920",
+            "logoFileName":"http://cchscom.cascheduler.com/palmetto_logo_mobile.gif"
+         }
+      ],
+      "pageData":{
+         "searchResultLabel":"Search Result",
+         "notFoundMessage":"We are sorry that we are unable to match the mobile code you have entered. Please try with correct mobile code or contact your provider."
+      }
+   }
+}
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/updateLocResSer?clientCode=MSCHELPS&device=mobile&uuid=anusha1&locationId=1&resourceId=2&serviceId=3
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getPersonalInfo?clientCode=DEMOCALL&device=mobile&langCode=us-en&customerId=84
+{
+   "data":{
+      "status":true,
+      "personalInfo":{
+         "mobilePageFields":[
+            {
+               "fieldId":9,
+               "fieldName":"SSN",
+               "loginType":"authenticate",
+               "paramType":"string",
+               "paramTable":"customer",
+               "paramColumn":"account_number",
+               "displayType":"textbox",
+               "display":"last7",
+               "emptyErrorMsg":"Please enter your SSN",
+               "invalidErrorMsg":"Please enter a valid SSN",
+               "required":"Y",
+               "validateRequired":"Y",
+               "validationRules":"numeric",
+               "validateMaxChars":"9",
+               "javaRef":"accountNumber",
+               "storageSize":0
+            },
+            {
+               "fieldId":10,
+               "fieldName":"First Name",
+               "loginType":"update",
+               "paramType":"string",
+               "paramTable":"customer",
+               "paramColumn":"first_name",
+               "displayType":"textbox",
+               "display":"",
+               "emptyErrorMsg":"Please enter your First Name",
+               "invalidErrorMsg":"Please enter a valid First Name",
+               "required":"Y",
+               "validateRequired":"Y",
+               "validationRules":"alpha, space, hypen, single-quote",
+               "validateMaxChars":"50",
+               "javaRef":"firstName",
+               "storageSize":0
+            },
+            {
+               "fieldId":11,
+               "fieldName":"Last Name",
+               "loginType":"update",
+               "paramType":"string",
+               "paramTable":"customer",
+               "paramColumn":"last_name",
+               "displayType":"textbox",
+               "display":"",
+               "emptyErrorMsg":"Please enter your Last Name",
+               "invalidErrorMsg":"Please enter a valid Last Name",
+               "required":"Y",
+               "validateRequired":"Y",
+               "validationRules":"alpha, space, hypen, single-quote",
+               "validateMaxChars":"50",
+               "javaRef":"lastName",
+               "storageSize":0
+            },
+            {
+               "fieldId":14,
+               "fieldName":"Contact Phone",
+               "loginType":"authenticate",
+               "paramType":"string",
+               "paramTable":"customer",
+               "paramColumn":"contact_phone",
+               "displayType":"textbox-3-3-4",
+               "display":"",
+               "emptyErrorMsg":"Please enter your Home Phone",
+               "invalidErrorMsg":"Please enter a valid 10-digit Home Phone",
+               "required":"Y",
+               "validateRequired":"Y",
+               "validationRules":"us-phone",
+               "validateMaxChars":"10",
+               "javaRef":"contactPhone",
+               "storageSize":0
+            },
+            {
+               "fieldId":13,
+               "fieldName":"Email",
+               "loginType":"update",
+               "paramType":"string",
+               "paramTable":"customer",
+               "paramColumn":"email",
+               "displayType":"textbox",
+               "display":"",
+               "emptyErrorMsg":"Please enter your Email",
+               "invalidErrorMsg":"Please enter a valid Email",
+               "required":"N",
+               "validateRequired":"Y",
+               "validationRules":"email",
+               "validateMaxChars":"50",
+               "javaRef":"email",
+               "storageSize":0
+            }
+         ],
+         "pageData":{
+            "titleLabel":"Your Info",
+            "titleDesc":"To make an appointment, please enter the requested information below  and client \"Next\" button at top right corner above."
+         },
+         "customer":{
+            "customerId":84,
+            "lastName":"Nandarapufss",
+            "contactPhone":"1427987895",
+            "email":"balajinsr@gamil.com",
+            "dob":"02/02/2015",
+            "city":"",
+            "zipPostal":"",
+            "address":"",
+            "attrib1":"124563987"
+         }
+      }
+   }
+}
+
+
+http://development.itfrontdesk.com/apptFrontEndRestService/service/getMyAccountDetails?uuid=anusha1&device=mobile
+{
+   "data":{
+      "status":true,
+      "personalInfoList":[
+         {
+            "clientCode":"MSCHELPS",
+            "mobilePageFields":[
+               {
+                  "fieldId":9,
+                  "fieldName":"SSN",
+                  "loginType":"authenticate",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"account_number",
+                  "displayType":"textbox",
+                  "display":"last7",
+                  "emptyErrorMsg":"Empty error message not configured for the key: LOGIN_SSN_EMPTY_ERROR",
+                  "invalidErrorMsg":"Invalid Error message not configured for the key:LOGIN_SSN_INVALID_ERROR",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"numeric",
+                  "validateMaxChars":"9",
+                  "javaRef":"accountNumber",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":10,
+                  "fieldName":"First Name",
+                  "loginType":"update",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"first_name",
+                  "displayType":"textbox",
+                  "display":"",
+                  "emptyErrorMsg":"Empty error message not configured for the key: LOGIN_FIRST_NAME_EMPTY_ERROR",
+                  "invalidErrorMsg":"Invalid Error message not configured for the key:LOGIN_FIRST_NAME_INVALID_ERROR",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"alpha, space, hypen, single-quote",
+                  "validateMaxChars":"50",
+                  "javaRef":"firstName",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":11,
+                  "fieldName":"Last Name",
+                  "loginType":"update",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"last_name",
+                  "displayType":"textbox",
+                  "display":"",
+                  "emptyErrorMsg":"Empty error message not configured for the key: LOGIN_LAST_NAME_EMPTY_ERROR",
+                  "invalidErrorMsg":"Invalid Error message not configured for the key:LOGIN_LAST_NAME_INVALID_ERROR",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"alpha, space, hypen, single-quote",
+                  "validateMaxChars":"50",
+                  "javaRef":"lastName",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":14,
+                  "fieldName":"Contact Phone",
+                  "loginType":"authenticate",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"contact_phone",
+                  "displayType":"textbox-3-3-4",
+                  "display":"",
+                  "emptyErrorMsg":"Empty error message not configured for the key: LOGIN_CONTACT_PHONE_EMPTY_ERROR",
+                  "invalidErrorMsg":"Invalid Error message not configured for the key:LOGIN_CONTACT_PHONE_INVALID_ERROR",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"us-phone",
+                  "validateMaxChars":"10",
+                  "javaRef":"contactPhone",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":13,
+                  "fieldName":"Email",
+                  "loginType":"update",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"email",
+                  "displayType":"textbox",
+                  "display":"",
+                  "emptyErrorMsg":"Empty error message not configured for the key: LOGIN_EMAIL_EMPTY_ERROR",
+                  "invalidErrorMsg":"Invalid Error message not configured for the key:LOGIN_EMAIL_INVALID_ERROR",
+                  "required":"N",
+                  "validateRequired":"Y",
+                  "validationRules":"email",
+                  "validateMaxChars":"50",
+                  "javaRef":"email",
+                  "storageSize":0
+               }
+            ],
+            "pageData":{
+               "titleLabel":"Your Info",
+               "titleDesc":"To make an appointment, please enter the requested information below  and client \"Next\" button at top right corner above."
+            },
+            "customer":{
+               "customerId":150,
+               "firstName":"ROZA",
+               "lastName":"AYDIN",
+               "contactPhone":"2069923392",
+               "email":"",
+               "dob":"",
+               "city":"",
+               "zipPostal":"",
+               "address":"",
+               "attrib1":""
+            }
+         },
+         {
+            "clientCode":"DEMOCALL",
+            "mobilePageFields":[
+               {
+                  "fieldId":9,
+                  "fieldName":"SSN",
+                  "loginType":"authenticate",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"account_number",
+                  "displayType":"textbox",
+                  "display":"last7",
+                  "emptyErrorMsg":"Please enter your SSN",
+                  "invalidErrorMsg":"Please enter a valid SSN",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"numeric",
+                  "validateMaxChars":"9",
+                  "javaRef":"accountNumber",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":10,
+                  "fieldName":"First Name",
+                  "loginType":"update",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"first_name",
+                  "displayType":"textbox",
+                  "display":"",
+                  "emptyErrorMsg":"Please enter your First Name",
+                  "invalidErrorMsg":"Please enter a valid First Name",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"alpha, space, hypen, single-quote",
+                  "validateMaxChars":"50",
+                  "javaRef":"firstName",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":11,
+                  "fieldName":"Last Name",
+                  "loginType":"update",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"last_name",
+                  "displayType":"textbox",
+                  "display":"",
+                  "emptyErrorMsg":"Please enter your Last Name",
+                  "invalidErrorMsg":"Please enter a valid Last Name",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"alpha, space, hypen, single-quote",
+                  "validateMaxChars":"50",
+                  "javaRef":"lastName",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":14,
+                  "fieldName":"Contact Phone",
+                  "loginType":"authenticate",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"contact_phone",
+                  "displayType":"textbox-3-3-4",
+                  "display":"",
+                  "emptyErrorMsg":"Please enter your Home Phone",
+                  "invalidErrorMsg":"Please enter a valid 10-digit Home Phone",
+                  "required":"Y",
+                  "validateRequired":"Y",
+                  "validationRules":"us-phone",
+                  "validateMaxChars":"10",
+                  "javaRef":"contactPhone",
+                  "storageSize":0
+               },
+               {
+                  "fieldId":13,
+                  "fieldName":"Email",
+                  "loginType":"update",
+                  "paramType":"string",
+                  "paramTable":"customer",
+                  "paramColumn":"email",
+                  "displayType":"textbox",
+                  "display":"",
+                  "emptyErrorMsg":"Please enter your Email",
+                  "invalidErrorMsg":"Please enter a valid Email",
+                  "required":"N",
+                  "validateRequired":"Y",
+                  "validationRules":"email",
+                  "validateMaxChars":"50",
+                  "javaRef":"email",
+                  "storageSize":0
+               }
+            ],
+            "pageData":{
+               "titleLabel":"Your Info",
+               "titleDesc":"To make an appointment, please enter the requested information below  and client \"Next\" button at top right corner above."
+            },
+            "customer":{
+               "customerId":3,
+               "lastName":"Nandarapu",
+               "contactPhone":"142",
+               "email":"balajinsr@gamil.com",
+               "dob":"",
+               "city":"",
+               "zipPostal":"",
+               "address":"",
+               "attrib1":"124563987"
+            }
+         }
+      ]
+   }
+}
+
+
+
+
+
+
